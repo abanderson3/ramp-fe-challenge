@@ -62,9 +62,9 @@ export function App() {
             value: item.id,
             label: `${item.firstName} ${item.lastName}`,
           })}
-          // Bug Fix #3: 
-            // Refactored the onChange to load all transactions if the id of the newValue was an empty string or null
-            // otherwise loadbyemployee
+          // Bug Fix #3:
+          // Refactored the onChange to load all transactions if the id of the newValue was an empty string or null
+          // otherwise loadbyemployee
           onChange={async (newValue) => {
             if (newValue === null || newValue.id === "") {
               await loadAllTransactions();
@@ -78,11 +78,16 @@ export function App() {
 
         <div className="RampGrid">
           <Transactions transactions={transactions} />
-
           {transactions !== null && (
             <button
               className="RampButton"
-              disabled={paginatedTransactionsUtils.loading}
+              // Bug Fix #6:
+              // extended the logic for the disabled button by casting transactionsByEmployee to boolean and checking the nextPage property of pagainatedTransactions
+              disabled={
+                paginatedTransactionsUtils.loading ||
+                !!transactionsByEmployee ||
+                paginatedTransactions?.nextPage === null
+              }
               onClick={async () => {
                 await loadAllTransactions();
               }}

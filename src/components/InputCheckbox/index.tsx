@@ -12,7 +12,6 @@ export const InputCheckbox: InputCheckboxComponent = ({
 
   const handleCheckboxChange = () => {
     const newValue = !checked;
-    // console.log("Checkbox value changed:", newValue);
     onChange(newValue);
   };
 

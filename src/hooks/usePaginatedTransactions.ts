@@ -27,7 +27,7 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
 
       return {
         // Bug Fix #4:
-        // refactored the return value to spread the previousResponse and new resposne into an array
+        // refactored to spread the previousResponse and new resposne into array
         data: [...previousResponse.data, ...response.data],
         nextPage: response.nextPage,
       };
